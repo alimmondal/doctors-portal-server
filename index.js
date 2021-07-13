@@ -62,6 +62,7 @@ client.connect(err => {
         const file = req.files.file;
         const name = req.body.name;
         const email = req.body.email;
+        const phone = req.body.phone;
         const newImg = file.data;
         const encImg = newImg.toString('base64');
 
@@ -71,7 +72,7 @@ client.connect(err => {
             img: Buffer.from(encImg, 'base64')
         };
 
-        doctorCollection.insertOne({ name, email, image })
+        doctorCollection.insertOne({ name, email, image, phone })
             .then(result => {
                 res.send(result.insertedCount > 0);
             })
